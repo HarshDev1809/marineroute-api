@@ -10,11 +10,9 @@ const __dirname = dirname(__filename);
 // 👇 Adjust relative to *this JS file*, or better: the project root
 const pythonFilePath = path.resolve(__dirname, "../../python_script/main.py");
 
-const pythonCmd = process.platform === "win32" ? "python" : "python3";
-
 export const getRouteFunc = (input) => {
   return new Promise((resolve, reject) => {
-    const pythonProcess = spawn(pythonCmd, [pythonFilePath]);
+    const pythonProcess = spawn('venv/bin/python', [pythonFilePath]);
 
     pythonProcess.stdin.write(JSON.stringify(input));
     pythonProcess.stdin.end();
